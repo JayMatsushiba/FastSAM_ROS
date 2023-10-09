@@ -1,0 +1,26 @@
+FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-devel
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y git ffmpeg libsm6 libxext6 && \
+    git clone https://github.com/CASIA-IVA-Lab/FastSAM.git
+
+RUN conda create -y -n FastSAM python=3.9
+RUN . /opt/conda/etc/profile.d/conda.sh && \
+    conda activate FastSAM && \
+    cd FastSAM && \
+    pip install -r requirements.txt && \
+    pip install git+https://github.com/openai/CLIP.git \
+    pip install gdown
+
+## for downloading weights for FastSAM
+RUN cd FastSAM && \
+    mkdir weights
+
+RUN . /opt/conda/etc/profile.d/conda.sh && \
+    conda activate FastSAM && \
+    cd FastSAM/weights  && \
+    gdown "https://drive.google.com/uc?export=download&id=1m1sjY4ihXBU1fZXdQ-Xdj-mDltW-2Rqv"
+## for cv2 dependencies
+# apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+# apt-get update && apt-get install libgl1
