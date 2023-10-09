@@ -21,6 +21,3 @@ RUN . /opt/conda/etc/profile.d/conda.sh && \
     conda activate FastSAM && \
     cd FastSAM/weights  && \
     gdown "https://drive.google.com/uc?export=download&id=1m1sjY4ihXBU1fZXdQ-Xdj-mDltW-2Rqv"
-## for cv2 dependencies
-# apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
-# apt-get update && apt-get install libgl1
