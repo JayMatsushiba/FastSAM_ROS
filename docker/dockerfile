@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y git ffmpeg libsm6 libxext6 && \
-    git clone https://github.com/CASIA-IVA-Lab/FastSAM.git
+    git clone https://github.com/SFU-mapping-hazards-with-lasers/FastSAM.git
 
 RUN conda create -y -n FastSAM python=3.9
 RUN . /opt/conda/etc/profile.d/conda.sh && \
